@@ -25,11 +25,11 @@ public class JpaApPatientsApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        for (int i=0; i< 100; i++){
+        for (int i=0; i<25; i++){
             patientRepository.save(
                     new Patient(null, "hassan"+i, new Date(), true ,(int)(Math.random()*999)));
         }
-        patientRepository.save(
+        /*patientRepository.save(
                 new Patient(null, "hassan", new Date(),false,56));
         patientRepository.save(
                 new Patient(null,"Mohammed", new Date(),true,100));
@@ -66,6 +66,14 @@ public class JpaApPatientsApplication implements CommandLineRunner {
 
         patientMalade.forEach(p->{
             System.out.println(p.getNom());
+        });*/
+
+        // patientRepository.findByMaladeAndScoreLessThan(true,100);
+
+        List<Patient> patientList = patientRepository.chercherPatients("%ha%", 500);
+
+        patientList.forEach(p->{
+            System.out.println(p.getScore());
         });
     }
 }
