@@ -1,5 +1,7 @@
 package miraoui.ma.jpaappatients;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import miraoui.ma.jpaappatients.entities.Patient;
 import miraoui.ma.jpaappatients.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @SpringBootApplication
 public class JpaApPatientsApplication implements CommandLineRunner {
+
 
     @Autowired
     private PatientRepository patientRepository;
@@ -34,7 +37,7 @@ public class JpaApPatientsApplication implements CommandLineRunner {
         patientRepository.save(
                 new Patient(null,"Mohammed", new Date(),true,100));
         patientRepository.save(
-                new Patient(null,"Imane",new Date(),false,11));
+                new Patient(null,"Imane",new Date(),false,11));*/
 
         Page<Patient> patients = patientRepository.findAll(PageRequest.of(0, 5));
         System.out.println("total pages: "+patients.getTotalPages());
@@ -59,14 +62,14 @@ public class JpaApPatientsApplication implements CommandLineRunner {
         }
 
         //delete
-        //patientRepository.deleteById(3L);
+        patientRepository.deleteById(3L);
 
 
         List<Patient> patientMalade = patientRepository.findByMaladeIsTrue();
 
         patientMalade.forEach(p->{
             System.out.println(p.getNom());
-        });*/
+        });
 
         // patientRepository.findByMaladeAndScoreLessThan(true,100);
 
